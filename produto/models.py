@@ -21,15 +21,12 @@ class Produto(Base):
     ncm = models.CharField('codigo Merco-sul', max_length=15, null=True)
     nome = models.CharField('Nome do Produtos', max_length=100)
     imagem = StdImageField('Imagem', upload_to="produto/imagens", variations={'thumb': (124, 124)})
-
     slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
 
     def __str__(self):
         return self.nome
 
 
-def produto_pre_save(signal, instance, sender, **kwargs):
-    instance.slug = slugify(instance.nome)
-
-
-signals.pre_save.connect(produto_pre_save, sender=Produto)
+    def produto_pre_save(signal, instance, sender, **kwargs):
+        instance.slug = slugify(instance.nome)
+        signals.pre_save.connect(produto_pre_save, sender=Produto)

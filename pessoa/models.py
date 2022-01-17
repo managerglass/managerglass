@@ -45,7 +45,6 @@ class Pessoa(Base, models.Model):
 
     informacoes_adicionais = models.CharField(
         max_length=1055, null=True, blank=True)
-
     # Dados padrao
     endereco_padrao = models.ForeignKey(
         'Endereco', related_name="endereco_padrao", on_delete=models.CASCADE, null=True, blank=True)
@@ -55,6 +54,10 @@ class Pessoa(Base, models.Model):
         'Site', related_name="site_padrao", on_delete=models.CASCADE, null=True, blank=True)
     email_padrao = models.ForeignKey(
         'Email', related_name="email_padrao", on_delete=models.CASCADE, null=True, blank=True)
+
+    class Meta:
+        verbose_name= 'Pessoa'
+        verbose_name_plural= 'Pessoas'
 
 
     def save(self, *args, **kwargs):
@@ -66,9 +69,17 @@ class Pessoa(Base, models.Model):
 
 
 class PessoaFisica(Pessoa):
-    cpf = models.CharField(max_length=32,null=True, blank=True, default=1)
-    rg = models.CharField(max_length=32, null=True, blank=True)
-    nascimento = models.DateField(null=True, blank=True)
+    nome = models.CharField('Nome', max_length=100, null=True, blank=True )
+    cpf = models.CharField('Cpf', max_length=32,null=True, blank=True)
+    rg = models.CharField('RG', max_length=32, null=True, blank=True)
+    nascimento = models.DateField('Nascimenot', null=True, blank=True)
+
+    class Meta:
+        verbose_name= 'Pessoa Física'
+        verbose_name_plural= 'Pessoas Física'
+
+    def __str__(self):
+        return self.nome
 
     @property
     def format_cpf(self):
@@ -86,13 +97,22 @@ class PessoaFisica(Pessoa):
 
 
 class PessoaJuridica(Pessoa):
-    cnpj = models.CharField(max_length=32, null=True, blank=True)
-    nome_fantasia = models.CharField(max_length=255, null=True, blank=True)
-    inscricaoEstadual = models.CharField(max_length=32, null=True, blank=True)
-    responsavel = models.CharField(max_length=32, null=True, blank=True)
+    cnpj = models.CharField('Cnpj', max_length=32, null=True, blank=True)
+    razao = models.CharField('Razão', max_length=255, null=True, blank=True)
+    nome_fantasia = models.CharField('Nome Fantasia', max_length=255, null=True, blank=True)
+
+    inscricaoEstadual = models.CharField('Incrição Estadual', max_length=32, null=True, blank=True)
+    responsavel = models.CharField('Responsável', max_length=32, null=True, blank=True)
     situcao_fiscal = models.CharField(
         max_length=2, null=True, blank=True, choices=ENQUADRAMENTO_FISCAL)
-    suframa = models.CharField(max_length=16, null=True, blank=True)
+    suframa = models.CharField('Suframa', max_length=16, null=True, blank=True)
+
+    class Meta:
+        verbose_name= 'Pessoa Jurídica'
+        verbose_name_plural= 'Pessoas Jurídica'
+
+    def __str__(self):
+        return self.nome_fantasia
 
     @property
     def format_cnpj(self):
