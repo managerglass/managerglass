@@ -1,5 +1,5 @@
 from django.db import models
-from .models import Produto
+from .models import ProdutoPorFornecedor
 from core.models import Base
 
 class CorPerfil(Base):
@@ -27,7 +27,7 @@ class LinhaAplicacao(models.Model):
     def __str__(self):
         return self.nome
 
-class Perfil(Produto):
+class Perfil(ProdutoPorFornecedor):
     id_cor_perfil = models.ForeignKey(
         CorPerfil, related_name="id_cor_pefil", on_delete=models.CASCADE, null=True, blank=True)
     id_tipo_perfil = models.ForeignKey(

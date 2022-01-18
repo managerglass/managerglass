@@ -11,6 +11,7 @@ from django.db.models import signals # sinaliza o objeto para edicao antes ou ap
 from django.template.defaultfilters import slugify
 from core.models import Base
 from empresaColigada.models import Empresa
+from clienteFornecedor.models import Fornecedor
 
 
 class Produto(Base):
@@ -30,3 +31,8 @@ class Produto(Base):
     def produto_pre_save(signal, instance, sender, **kwargs):
         instance.slug = slugify(instance.nome)
         signals.pre_save.connect(produto_pre_save, sender=Produto)
+
+
+class ProdutoPorFornecedor(Produto):
+    id_fornecedor = models.ForeignKey(
+        Fornecedor, related_name="id_fornecedor_produto", on_delete=models.CASCADE, null=True, blank=True)

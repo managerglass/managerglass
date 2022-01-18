@@ -1,5 +1,5 @@
 from django.db import models
-from .models import Produto
+from .models import ProdutoPorFornecedor
 from core.models import Base
 
 
@@ -27,7 +27,7 @@ class Tipo(Base):
         verbose_name_plural = 'Tipos Componentes'
 
 
-class ComponentesAcessorios(Produto):
+class ComponentesAcessorios(ProdutoPorFornecedor):
     id_cor_componentes = models.ForeignKey(
         CorComponentes, related_name="id_cor_componentes", on_delete=models.CASCADE, null=True, blank=True)
     id_tipo_componentes = models.ForeignKey(

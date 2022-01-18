@@ -1,5 +1,5 @@
 from django.db import models
-from .models import Produto
+from .models import ProdutoPorFornecedor
 from core.models import Base
 
 class CorVidro(Base):
@@ -18,7 +18,7 @@ class TipoVidro(Base):
 
 
 
-class Vidros(Produto):
+class Vidros(ProdutoPorFornecedor):
     id_cor_vidro = models.ForeignKey(
         CorVidro, related_name="id_cor_vidro", on_delete=models.CASCADE, null=True, blank=True)
     id_tipo_vidro = models.ForeignKey(
