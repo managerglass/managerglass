@@ -1,0 +1,46 @@
+{% load static%}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+	<head>
+		<!-- Meta data -->
+		<meta charset="UTF-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+		<meta content="ManagerGlass" name="description">
+		<meta content="JESSE™" name="author">
+		<meta name="keywords" content="managerglass, vidro, esquadrias, esquadrias de aluminio, sistema de esquadrias, sistema esquadrias de alumínio, sistema de gestão para vidraçaria, sistema de gestão orçamento para vidraçaria"/>
+
+		<!-- Title -->
+		<title>ManagerGlass</title>
+        {% include 'components/support/styles.html'%}
+        {% block styles %} {% endblock styles%}
+        {% bootstrap_css %}
+    </head>
+    <body class="">
+        <!---Global-loader-->
+		<div id="global-loader" >
+			<img src="{% static 'site/img/svg/loader.svg' %}" alt="loader">
+		</div>
+        <!---PAGE-->
+		<div class="page">
+			<div class="page-main">
+
+                <!---Global-loader-->
+				{% include 'components/support/mobile-header.html'%}
+
+                <div class="main-content main">
+                    <!---content-->
+					{% block body %} {% endblock body%}
+
+					<!---modal-->
+					{% block modal %} {% endblock modal%}
+                </div>
+        	</div>
+		</div>
+
+        <!---scripts-->
+        {% include 'components/support/scripts.html'%}
+        {% block scripts %} {% endblock scripts%}
+        {% bootstrap_javascript jquery='full' %}
+    </body>
+</html>
