@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'produto',
     'pessoa',
     'empresaColigada',
+    'clienteFornecedor',
 ]
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
