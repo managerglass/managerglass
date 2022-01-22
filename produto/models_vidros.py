@@ -19,9 +19,9 @@ class TipoVidro(Base):
 
 
 class Vidros(ProdutoPorFornecedor):
-    id_cor_vidro = models.ForeignKey(
+    cor_vidro = models.ForeignKey(
         CorVidro, related_name="id_cor_vidro", on_delete=models.CASCADE, null=True, blank=True)
-    id_tipo_vidro = models.ForeignKey(
+    tipo_vidro = models.ForeignKey(
         TipoVidro, related_name="id_tipo_vidro", on_delete=models.CASCADE, null=True, blank=True)
     espessura = models.IntegerField('Espessura', null=True, blank=False)
     arredondamento = models.IntegerField('Arredondamento', null=True, blank=False)
@@ -32,7 +32,7 @@ class Vidros(ProdutoPorFornecedor):
         verbose_name_plural = 'Vidros'
 
 class BeneficiamentoVidro(Base):
-    id_vidro = models.ForeignKey(
+    vidro = models.ForeignKey(
         Vidros, related_name="id_beneficiamento_vidro", on_delete=models.CASCADE, null=True, blank=True)
     nome = models.CharField('Nome do Beneficiamento', max_length=100)
 

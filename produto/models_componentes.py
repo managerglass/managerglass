@@ -28,11 +28,11 @@ class Tipo(Base):
 
 
 class ComponentesAcessorios(ProdutoPorFornecedor):
-    id_cor_componentes = models.ForeignKey(
+    cor_componentes = models.ForeignKey(
         CorComponentes, related_name="id_cor_componentes", on_delete=models.CASCADE, null=True, blank=True)
-    id_tipo_componentes = models.ForeignKey(
+    tipo_componentes = models.ForeignKey(
         Tipo, related_name="id_tipo_componentes", on_delete=models.CASCADE, null=True, blank=True)
-    id_grupo_aplicacao = models.ForeignKey(
+    grupo_aplicacao = models.ForeignKey(
         GrupoAplicacao, related_name="id_grupo_componentes", on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
