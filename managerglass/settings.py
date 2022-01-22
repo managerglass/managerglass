@@ -30,13 +30,13 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'adminlte3',
+    #'adminlte3_theme',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'adminlte3_theme',
     'core',
     'bootstrap4',
     'stdimage',
